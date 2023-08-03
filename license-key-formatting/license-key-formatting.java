@@ -8,16 +8,17 @@ class Solution {
         }
         else groups = s.length()/k +1;
         int sz = k;
+        StringBuilder sb = new StringBuilder();
         for(int i = s.length()-1;i>=0;i--){
             if(sz==0){
                 sz = k;
-                ans = "-"+ans;
+                sb = sb.append("-");
             }
             char ch = s.charAt(i);
             if(Character.isLetter(ch))ch = Character.toUpperCase(ch);
-            ans = ch + ans;
+            sb = sb.append(ch);
             sz--;
         }
-        return ans;
+        return sb.reverse().toString();
     }
 }
