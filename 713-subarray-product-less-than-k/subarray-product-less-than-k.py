@@ -8,7 +8,6 @@ class Solution:
             while j<=i and prod>=k:
                 prod//=nums[j]
                 j+=1
-                flag = True
             ans+=(i-j+1)
             i+=1
 
