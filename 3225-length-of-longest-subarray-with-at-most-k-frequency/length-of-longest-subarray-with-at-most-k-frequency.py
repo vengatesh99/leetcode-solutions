@@ -10,7 +10,6 @@ class Solution:
                 if freq_map[i] == 0:
                     del freq_map[i]
                 i+=1
-            print(i,j)  
             ans = max(ans, j-i+1)
             
             j+=1
