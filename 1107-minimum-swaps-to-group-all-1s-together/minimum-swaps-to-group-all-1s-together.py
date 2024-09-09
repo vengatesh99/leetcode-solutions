@@ -1,25 +1,25 @@
 class Solution:
     def minSwaps(self, data: List[int]) -> int:
-        n = len(data)
         ones = 0
-        for i in range(n):
-            if data[i] == 1:
+        for num in data:
+            if num == 1:
                 ones+=1
-        i,j = 0,0
-        maxOnes,newOnes = 0,0
+        onesInSubArr = 0
+        maxOnes = 0
+        i,j,n = 0,0,len(data)
+        if ones == 0:
+            return 0
         while j<n:
-            if j-i+1 > ones:
-                if data[i] == 1 and newOnes!=0:
-                    newOnes-=1
-                i+=1
-                maxOnes = max(maxOnes,newOnes)
-            else:
-                if data[j] == 1:
-                    newOnes+=1
-                if j-i+1 == ones:
-                    maxOnes = max(maxOnes,newOnes)
+            while j<n and j-i+1<=ones:
+                onesInSubArr += data[j]
+                maxOnes = max(maxOnes,onesInSubArr)
                 j+=1
+            while i<j and j-i+1>ones:
+                onesInSubArr -= data[i]
+                i+=1
 
-        maxOnes = max(newOnes,maxOnes)
-        print(ones,maxOnes)
         return ones-maxOnes
+            
+        
+        
+
