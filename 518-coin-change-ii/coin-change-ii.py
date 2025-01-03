@@ -1,19 +1,14 @@
 class Solution:
     def change(self, amount: int, coins: List[int]) -> int:
-        memo = {}
-        def dp(index,remaining):
-            if remaining == 0:
-                return 1
-            if index == len(coins):
-                return 0
-            if(index,remaining) in memo:
-                return memo[(index,remaining)]
-            numWays = 0
-            if coins[index] > remaining:
-                numWays = dp(index+1,remaining)
-            else:
-                numWays = dp(index,remaining - coins[index]) + dp(index+1, remaining)
-            memo[(index,remaining)] = numWays
-            return numWays
-        ans = dp(0,amount)
-        return ans
+        dp = [[0]*(amount+1)]*(len(coins)+1)
+        n = len(coins)
+        for i in range(n):
+            dp[i][0] = 1
+        for i in range(n-1,-1,-1):
+            for j in range(1,amount+1):
+                if coins[i] > j:
+                    dp[i][j] = dp[i+1][j]
+                else:
+                    dp[i][j] = dp[i+1][j-coins[i]] + dp[i+1][j]
+        return dp[0][amount]
+
