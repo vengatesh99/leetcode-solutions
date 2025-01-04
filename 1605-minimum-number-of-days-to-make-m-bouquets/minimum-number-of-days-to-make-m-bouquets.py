@@ -24,7 +24,6 @@ class Solution:
                 right = mid
             else:
                 left = mid+1
-        print(left)
         if isFeasible(left-1):
             return left-1
         return left
