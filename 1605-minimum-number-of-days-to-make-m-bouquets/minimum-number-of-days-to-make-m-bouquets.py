@@ -20,7 +20,6 @@ class Solution:
                 
         while left<right:
             mid = left+(right-left)//2
-            print(left,right,mid)
             if isFeasible(mid):
                 right = mid
             else:
