@@ -5,7 +5,7 @@ class Solution:
             mid = (left+right)//2
             if nums[mid] == target:
                 return mid
-            if nums[mid]>=nums[0]:
+            if nums[mid]>=nums[left]:
                 if nums[mid]>target and target>=nums[left]:
                     right = mid-1
                 else:
