@@ -1,8 +1,23 @@
 class Solution:
     def minimizeArrayValue(self, nums: List[int]) -> int:
-        ans = sum = nums[0]
-        for i in range(1,len(nums)):
-            sum+=nums[i]
-            ans = max(ans,math.ceil(sum/(i+1)))
-    
-        return ans
+        left,right = 0,max(nums)
+        n = len(nums)
+        def feasible(target):
+            # print("target",target)
+            nums_copy = [num for num in nums]
+            maxNum = float("-inf")
+            for i in range(n-1,0,-1):
+                if nums_copy[i]>target:
+                    diff = nums_copy[i]-target
+                    nums_copy[i] = target
+                    nums_copy[i-1]+=diff
+            maxNum = max(nums_copy)
+            return maxNum<=target
+
+        while left<right:
+            mid = (left+right)//2
+            if feasible(mid):
+                right = mid
+            else:
+                left = mid+1
+        return left
