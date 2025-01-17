@@ -1,8 +1,6 @@
 class Solution:
     def doesValidArrayExist(self, derived: List[int]) -> bool:
-        first = 0
-        last = 0
-        for n in derived:
-            if n:
-                last = ~last
-        return first == last
+        ans = 0
+        for d in derived:
+            ans ^= d
+        return ans == 0
