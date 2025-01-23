@@ -11,7 +11,7 @@ class Solution:
         hashmap = defaultdict(int)
         while q and level:
             sz = len(q)
-            while sz:
+            while sz and q:
                 node = q.popleft()
                 for neib in adj_list[node]:
                     if neib not in visit:
