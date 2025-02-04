@@ -5,7 +5,6 @@ class Solution:
         ans = [[-1 for j in range(n)] for i in range(m)]
         for i,j in queue:
             ans[i][j] = 0
-        maxH = -1
         print(queue)
         while queue:
             row,col = queue.pop(0)
@@ -14,7 +13,6 @@ class Solution:
                 if min(newR,newC)>=0 and newR<m and newC<n and ans[newR][newC] == -1:
                     queue.append((newR,newC))
                     ans[newR][newC] = ans[row][col]+1
-                    maxH = max(maxH,ans[row][col])
         return ans
             
                 
