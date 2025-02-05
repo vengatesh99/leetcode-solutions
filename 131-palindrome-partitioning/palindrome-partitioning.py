@@ -15,10 +15,9 @@ class Solution:
                 return
             for i in range(start,end):
                 if isPalin(start,i):
-                    # print(s[start:i+1])
                     ans.append(s[start:i+1])
                     breakString(i+1,end)
-                    ans.pop()
+                    del ans[-1]
         breakString(0,len(s))
         return res
                 
