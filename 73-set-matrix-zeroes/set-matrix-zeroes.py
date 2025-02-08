@@ -3,17 +3,20 @@ class Solution:
         """
         Do not return anything, modify matrix in-place instead.
         """
-        zeroes = set()
-        m,n = len(matrix),len(matrix[0])
-        for i in range(m):
-            for j in range(n):
+        queue = deque()
+        n = len(matrix)
+        m = len(matrix[0])
+        visit = set()
+        for i in range(n):
+            for j in range(m):
                 if matrix[i][j] == 0:
-                    zeroes.add((i,j))
-        for row, col in zeroes:
-            for j in range(n):
-                matrix[row][j] = 0
+                    queue.append((i,j))
+        while queue:
+            r,c = queue.popleft()
+            for i in range(n):
+                matrix[i][c] = 0
             for i in range(m):
-                matrix[i][col] = 0
-        
-
+                matrix[r][i] = 0
+        return matrix
+            
         
