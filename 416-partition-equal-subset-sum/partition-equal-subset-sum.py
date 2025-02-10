@@ -1,19 +1,18 @@
 class Solution:
-    def isSubsets(self, nums, target, ind, memo):
-        if ind == len(nums):
-            return False
-        if target < 0:
-            return False
-        if target == 0:
-            return True
-        if (ind,target) in memo:
-            return memo[(ind,target)]
-        memo[(ind,target)] = self.isSubsets(nums,target - nums[ind],ind+1, memo) or self.isSubsets(nums,target,ind+1,memo)
-        return memo[(ind,target)]
-
     def canPartition(self, nums: List[int]) -> bool:
-        memo = {}
         total = sum(nums)
-        if total % 2 != 0:
-            return False 
-        return self.isSubsets(nums, total // 2, 0, memo)
+        if total % 2 !=0:
+            return False
+        memo = {}
+        def findSubset(i,s,target):
+            if s>target or i == len(nums):
+                return False
+            if s == target:
+                return True
+            if (i,target-s) in memo:
+                return memo[(i,target-s)]
+            isSubset = findSubset(i+1,s+nums[i],target) or findSubset(i+1,s,target)
+            memo[(i,target-s)] = isSubset
+            return isSubset
+
+        return findSubset(0,0,total//2)
