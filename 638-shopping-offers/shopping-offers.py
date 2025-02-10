@@ -7,15 +7,17 @@ class Solution:
                 if arr[k]<target[k]:
                     return False
             return True
-        @lru_cache(None)
+
         def dp(rem):
+            if tuple(rem) in memo:
+                return memo[tuple(rem)]
             mincost = float("inf")
-            remList = list(rem)
             for offer in special:
-                if checkValid(offer,remList):
-                    left = [item-offer[i] for i,item in enumerate(remList)]
-                    mincost = min(mincost,offer[-1]+dp(tuple(left)))
-            cost = sum([rem[i]*price[i] for i in range(len(remList))])
+                if checkValid(offer,rem):
+                    left = [item-offer[i] for i,item in enumerate(rem)]
+                    mincost = min(mincost,offer[-1]+dp(left))
+            cost = sum([rem[i]*price[i] for i in range(len(rem))])
             mincost = min(mincost,cost)
+            memo[tuple(rem)] = mincost
             return mincost
-        return dp(tuple(rem))
+        return dp(rem)
