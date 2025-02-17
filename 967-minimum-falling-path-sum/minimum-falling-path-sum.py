@@ -1,15 +1,17 @@
 class Solution:
     def minFallingPathSum(self, matrix: List[List[int]]) -> int:
-        dp = [[0 for _ in range(len(matrix[0]))] for _ in range(len(matrix))]
         n,m = len(matrix),len(matrix[0])
+        dp = [[0 for i in range(n)] for j in range(m)]
+        ans = float("inf")
         for i in range(n):
             for j in range(m):
                 if i == 0:
                     dp[i][j] = matrix[i][j]
-                elif j==0:
-                    dp[i][j] = matrix[i][j]+min(dp[i-1][j],dp[i-1][j+1])
-                elif j == m-1:
-                    dp[i][j] = matrix[i][j]+min(dp[i-1][j],dp[i-1][j-1])
                 else:
-                    dp[i][j] = matrix[i][j]+min(dp[i-1][j],dp[i-1][j+1],dp[i-1][j-1])
-        return min(dp[n-1])
+                    leftD = float("inf") if j-1<0 else dp[i-1][j-1]
+                    top = dp[i-1][j]
+                    rightD = float("inf") if j+1 == m else dp[i-1][j+1]
+                    dp[i][j] = min(leftD,top,rightD)+matrix[i][j]
+        return min(dp[-1])
+         
+        
