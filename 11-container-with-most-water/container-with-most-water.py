@@ -11,12 +11,13 @@ class Solution:
             else:
                 i+=1
                 j-=1
-            # if min(height[i+1],height[j])<min(height[i],height[j-1]):
-            #     j-=1
-            # elif min(height[i+1],height[j])>min(height[i],height[j-1]):
-            #     i+=1
-            # else:
-            #     i+=1
-            #     j-=1
-
+        # while i<j:
+        #     ans = max(ans,min(height[i],height[j])*(j-i))
+        #     if min(height[i],height[j-1])>min(height[i+1],height[j]):
+        #         j-=1
+        #     elif min(height[i],height[j-1])<min(height[i+1],height[j]):
+        #         i+=1
+        #     else:
+        #         i+=1
+        #         j-=1
         return ans
