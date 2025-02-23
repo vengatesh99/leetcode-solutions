@@ -10,7 +10,7 @@ class Solution:
                 j = i+l
                 c = 1 if l == 0 else 2
                 while i>=0 and j<n and s[i]==s[j]:
-                    c+=1
+                    c+=2
                     i-=1
                     j+=1
                 if c>ans:
