@@ -4,9 +4,10 @@ class Solution:
         def cyclicSort(i):
             while i<n:
                 while nums[i]<n and nums[i]!=i:
-                    temp = nums[nums[i]]
-                    nums[nums[i]] = nums[i]
-                    nums[i] = temp
+                    # temp = nums[nums[i]]
+                    # nums[nums[i]] = nums[i]
+                    # nums[i] = temp
+                   nums[nums[i]],nums[i] = nums[i],nums[nums[i]]
                 i+=1
         cyclicSort(0)
         for i in range(n):
