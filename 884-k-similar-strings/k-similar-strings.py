@@ -15,10 +15,10 @@ class Solution:
                 i+=1
             for j in range(i,n):
                 if cur_list[j] == s2_list[i] and s2_list[j]!=cur_list[j]:
-                    cur_list[i],cur_list[j] = cur_list[j],cur_list[i]
+                    cur_list[j],cur_list[i] = cur_list[i],cur_list[j]
                     newNeib = "".join(cur_list)
                     if newNeib not in visit:
                         queue.append((newNeib,level+1))
                         visit.add(newNeib)
-                    cur_list[i],cur_list[j] = cur_list[j],cur_list[i]
+                    cur_list[j],cur_list[i] = cur_list[i],cur_list[j]
         return -1
