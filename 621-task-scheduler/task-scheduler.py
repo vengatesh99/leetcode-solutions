@@ -5,7 +5,6 @@ class Solution:
         pq = [(-v,ord(k)-ord("A")) for k,v in counter.items()]
         heapq.heapify(pq)
         count = 0
-        res = []
         while pq:
             cycles = n+1
             temp_arr = {}
@@ -15,12 +14,9 @@ class Solution:
                 if top:
                     temp_arr[ind] = top
                 count+=1
-                res.append(ind)
                 cycles-=1
             if cycles>0 and temp_arr:
                 count+=cycles
-                res.append(-1)
             for i,f in temp_arr.items():
                 heapq.heappush(pq,(-f,i))
-        print(res)
         return count
