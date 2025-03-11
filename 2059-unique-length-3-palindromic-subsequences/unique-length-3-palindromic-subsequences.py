@@ -1,15 +1,13 @@
-from collections import Counter
 class Solution:
     def countPalindromicSubsequence(self, s: str) -> int:
-        charCount = Counter(s)
-        res = set()
-        left = set()
-        for c in s:
-            charCount[c]-=1
-            for ch in left:
-                if charCount[ch]>0:
-                    res.add(ch+c)
-            left.add(c)
-           
-        return len(res)
-
+        right = Counter(s)
+        left = defaultdict(int)
+        right[s[0]]-=1
+        ans = set()
+        for i in range(1,len(s)):
+            left[s[i-1]]+=1
+            right[s[i]]-=1
+            for k,v in left.items():
+                if k in right and min(v,right[k])>0:
+                    ans.add(k+s[i]+k)
+        return len(ans)
