@@ -11,9 +11,9 @@ class Solution:
             c = 0
             for i in range(ind,n+1):
                 if (permutations[i]%(ind) == 0 or (ind)%permutations[i]==0):
-                    permutations[ind],permutations[i] = permutations[i],permutations[ind]
+                    permutations[i],permutations[ind] = permutations[ind],permutations[i]
                     c+=recurse(ind+1,permutations)
-                    permutations[ind],permutations[i] = permutations[i],permutations[ind]
+                    permutations[i],permutations[ind] = permutations[ind],permutations[i]
             return c
 
         return recurse(1,permutations)
