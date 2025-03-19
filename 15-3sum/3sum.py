@@ -1,31 +1,23 @@
 class Solution:
     def threeSum(self, nums: List[int]) -> List[List[int]]:
-        freqNum = defaultdict(int)
-        for num in nums:
-            freqNum[num]+=1
+        n = len(nums)
+        ans = []
         nums.sort()
-        ans = set()
-        for i in range(len(nums)-2):
-            # freqNum[nums[i]]-=1
-            target = -nums[i]
-            l = i+1
-            r = len(nums)-1
-            while l<r:
-                if nums[l]+nums[r]>target:
-                    r-=1
-                elif nums[l]+nums[r]<target:
-                    l+=1
-                else:
-                    ans.add((nums[i],nums[l],nums[r]))
-                    l+=1
-                    r-=1
-            
-            # for j in range(i+1,len(nums)):
-            #     freqNum[nums[j]]-=1
-            #     rem = -nums[i]-nums[j]
-            #     if rem>=nums[i] and rem>=nums[j] and freqNum[rem]  > 0:
-            #         triplet = (nums[i],nums[j],rem)
-            #         ans.add(triplet)
-            #     freqNum[nums[j]]+=1
-            # freqNum[nums[i]]+=1
-        return list(ans)
+        i = 0
+        while i<n:
+            counter = defaultdict(int)
+            # while i+1<n and nums[i]==nums[i+1]:
+            #     i+=1
+            j = n-1
+            while j>i:
+                complement = -(nums[i]+nums[j])
+                if counter[complement]>0:
+                    ans.append([nums[i],nums[j],complement])
+                    while j>i and nums[j]==nums[j-1]:
+                        j-=1
+                counter[nums[j]]+=1
+                j-=1
+            i+=1
+            while i<n and nums[i]==nums[i-1]:
+                i+=1
+        return ans
